@@ -2,15 +2,18 @@
   margin: 0;
   padding: 0;
 }
-.container {
-  margin: 0 auto;
-  padding: 40px 0 543px;
-  background: url("planeta-kosmos-rozovyi-fon-art.png" );
-  background-color: rgba(0, 120, 201, 0.7); 
+body{
+  background: url(planeta-kosmos-rozovyi-fon-art.png);
+  background-color: rgba(0, 120, 201, 0.7);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  position: relative;
+}
+.container {
+  margin: 0 auto;
+  padding: 40px 0;
   position: relative;
 }
 .container::after{
