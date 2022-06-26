@@ -27,13 +27,13 @@ body{
     height: 100%;
 }
 .wrapper_todo {
-  margin: 0 auto;
-  padding: 15px 30px 2px 30px;
-  width: 400px;
-  border-radius: 23px;
-  background-color: rgba(167, 154, 160, 0.333);
-  position: relative;
-  z-index: 5;
+    margin: 0 auto;
+    padding: 15px 30px 2px 30px;
+    width: 400px;
+    border-radius: 23px;
+    background-color: rgb(207 173 188 / 84%);
+    position: relative;
+    z-index: 5;
 }
 .header_todo {
   display: flex;
