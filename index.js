@@ -85,6 +85,7 @@ function addUl (data = [], container) {
   const noteDataJson = JSON.stringify(data);
   localStorage.setItem('todos', noteDataJson );
   localStorage.clear();
+  data = [];
   return container;
 }
 
