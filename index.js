@@ -2,6 +2,11 @@
 const noteDataJson = localStorage.getItem('todos') || '[]';
 let tasks = JSON.parse(noteDataJson );
 
+window.addEventListener ('unload', () => {
+  const noteDataJson = JSON.stringify(data);
+  localStorage.setItem('todos', noteDataJson );
+});
+
 function divAdd(div, className, b) {
   let a = document.createElement(div);
   a.className = className;
@@ -82,8 +87,6 @@ function addUl (data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
-  const noteDataJson = JSON.stringify(data);
-  localStorage.setItem('todos', noteDataJson );
   return container;
 }
 
