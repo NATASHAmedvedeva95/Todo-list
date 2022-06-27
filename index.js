@@ -1,5 +1,7 @@
 // создание наших тасок.начинаем с пустого массива
-let tasks = [];
+const noteDataJson = localStorage.getItem('notes') || '[]';
+let tasks = JSON.parse(noteDataJson );
+
 function divAdd(div, className, b) {
   let a = document.createElement(div);
   a.className = className;
@@ -80,6 +82,8 @@ function addUl (data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
+  const noteDataJson = JSON.stringify(data);
+  localStorage.setItem('notes', noteDataJson )
   return container;
 }
 
