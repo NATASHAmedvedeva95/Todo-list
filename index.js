@@ -82,7 +82,7 @@ function addUl (data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
-  const noteDataJson = JSON.stringify(data[{}]);
+  const noteDataJson = JSON.stringify(data);
   localStorage.setItem('todos', noteDataJson );
   return container;
 }
