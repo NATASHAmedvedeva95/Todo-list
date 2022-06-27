@@ -80,7 +80,6 @@ function addUl (data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
-  localStorage['items'] = JSON.stringify(task);
   return container;
 }
 
@@ -136,6 +135,4 @@ const addContainer1 = divAdd("div", "container");
 addContainer1.append(appBlock);
 document.body.append(addContainer1);
 
- window.onstorage = event => {
-    updateUl(JSON.parse(event.newValue));
-  }
+
