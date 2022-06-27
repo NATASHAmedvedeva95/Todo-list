@@ -68,7 +68,6 @@ function addHeader() {
     let ul = document.querySelector('ul');
     while(ul.firstElementChild){
       ul.firstElementChild.remove();
-      localStorage.clear();
     }
     // 2 способ убирает по очереди
     // addUl(tasks, tasksWrapper.firstElementChild).remove();
@@ -85,6 +84,7 @@ function addUl (data = [], container) {
   container.append(...tasks);
   const noteDataJson = JSON.stringify(data);
   localStorage.setItem('todos', noteDataJson );
+  localStorage.clear();
   return container;
 }
 
