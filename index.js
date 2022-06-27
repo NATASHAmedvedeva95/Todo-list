@@ -69,7 +69,6 @@ function addHeader() {
     while(ul.firstElementChild){
       ul.firstElementChild.remove();
       localStorage.clear();
-      return tasks [];
     }
     // 2 способ убирает по очереди
     // addUl(tasks, tasksWrapper.firstElementChild).remove();
