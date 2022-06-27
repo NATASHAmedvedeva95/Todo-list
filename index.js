@@ -73,7 +73,7 @@ function addHeader() {
     let ul = document.querySelector('ul');
     while(ul.firstElementChild){
       ul.firstElementChild.remove();
-      todos.length = 0;
+      addUl();
     }
     // 2 способ убирает по очереди
     // addUl(tasks, tasksWrapper.firstElementChild).remove();
