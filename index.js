@@ -1,5 +1,5 @@
 // создание наших тасок.начинаем с пустого массива
-const noteDataJson = localStorage.getItem('notes') || '[]';
+const noteDataJson = localStorage.getItem('todos') || '[]';
 let tasks = JSON.parse(noteDataJson );
 
 function divAdd(div, className, b) {
@@ -83,7 +83,7 @@ function addUl (data = [], container) {
   container.innerHTML = "";
   container.append(...tasks);
   const noteDataJson = JSON.stringify(data);
-  localStorage.setItem('notes', noteDataJson )
+  localStorage.setItem('todos', noteDataJson )
   return container;
 }
 
