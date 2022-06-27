@@ -69,6 +69,8 @@ function addHeader() {
     while(ul.firstElementChild){
       ul.firstElementChild.remove();
     }
+     const noteDataJson = JSON.stringify(data);
+  localStorage.setItem('todos', noteDataJson );
     // 2 способ убирает по очереди
     // addUl(tasks, tasksWrapper.firstElementChild).remove();
   });
