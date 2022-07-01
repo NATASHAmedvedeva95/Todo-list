@@ -66,7 +66,7 @@ function addHeader() {
       alert("Заметка пустая");
       return;
     }
-    tasks.push({text, id: crypto.randomUUID(),isChecked == false });
+    tasks.push({text, id: crypto.randomUUID(),isChecked.false });
     addUl(tasks, tasksWrapper);
   });
   // на удаление
