@@ -100,10 +100,6 @@ function addUlItem(task) {
   // ===================
   block.onclick = function (event) {
       let target = event.target;
-      if(target == task.input.isChecked){
-        block.classList.toggle('block_active');
-        text.classList.toggle('text_active');
-      }
       if(target == addBtn){
         tasks.splice(block,1);
         addUl(tasks, tasksWrapper);
@@ -112,6 +108,12 @@ function addUlItem(task) {
   //============================== 
   
     let input = addInputCheckbox("checkbox", null, "checkbox");
+     input.addEventListener('click', () => {
+      if(task.isChecked){
+        block.classList.toggle('block_active');
+        text.classList.toggle('text_active');
+      }
+     });
     let textBlock = divAdd("div", "text_block");
     let text = divAdd("textarea", "text", task.text);
     let wrapBtn = divAdd("div", "wrapper_btn");
