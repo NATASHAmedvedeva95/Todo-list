@@ -59,7 +59,7 @@ function addHeader() {
       alert("Заметка пустая");
       return;
     }
-    tasks.push({text, id: crypto.randomUUID()});
+    tasks.push(text);
     addUl(tasks, tasksWrapper);
   });
   // на удаление
@@ -72,7 +72,7 @@ function addHeader() {
     }
     // возвращение пустого массива после удаления
     let text = document.querySelector('.text');
-    tasks.push({text, id: crypto.randomUUID()});
+    tasks.push(text);
     addUl(tasks = [], tasksWrapper);
   });
   //
@@ -104,7 +104,7 @@ function addUlItem(task) {
       }
     };
   //============================== 
-
+  
     let input = addInputCheckbox("checkbox", null, "checkbox");
     let textBlock = divAdd("div", "text_block");
     let text = divAdd("textarea", "text", task);
