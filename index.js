@@ -1,6 +1,13 @@
 // создание наших тасок.начинаем с пустого массива
 const noteDataJson = localStorage.getItem('todos') || "[]";
 let tasks = JSON.parse(noteDataJson);
+
+window.addEventListener('unload', () => {
+ const noteDataJson = JSON.stringify(tasks);
+ localStorage.setItem('todos', noteDataJson);
+});
+
+
 // создание обёрток
 function divAdd(div, className, b) {
   let a = document.createElement(div);
@@ -59,7 +66,7 @@ function addHeader() {
       alert("Заметка пустая");
       return;
     }
-    tasks.push(text);
+    tasks.push({text, id: crypto.randomUUID()});
     addUl(tasks, tasksWrapper);
   });
   // на удаление
@@ -84,19 +91,19 @@ function addUl(data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
-  const noteDataJson = JSON.stringify(data);
-  localStorage.setItem('todos', noteDataJson);
   return container;
 }
 // обработчик на блоках
 function addUlItem(task) {
   let block = divAdd("li", "block");
+  block.id = task.id;
   // ===================
   block.onclick = function (event) {
       let target = event.target;
       if(target == input){
         block.classList.toggle('block_active');
         text.classList.toggle('text_active');
+        task.isChecked = !task.isChecked;
       }
       if(target == addBtn){
         tasks.splice(block,1);
@@ -107,7 +114,7 @@ function addUlItem(task) {
   
     let input = addInputCheckbox("checkbox", null, "checkbox");
     let textBlock = divAdd("div", "text_block");
-    let text = divAdd("textarea", "text", task);
+    let text = divAdd("textarea", "text", task.text);
     let wrapBtn = divAdd("div", "wrapper_btn");
     let addBtn = buttonAdd("btn_1", "X");
     let addWrapData =divAdd("div", "wrap_data");
