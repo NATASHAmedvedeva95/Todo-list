@@ -1,12 +1,7 @@
 // создание наших тасок.начинаем с пустого массива
-const noteDataJson = localStorage.getItem('todos') || '[]';
-let tasks = JSON.parse(noteDataJson );
-
-window.addEventListener ('unload', () => {
-  const noteDataJson = JSON.stringify(data);
-  localStorage.setItem('todos', noteDataJson );
-});
-
+const noteDataJson = localStorage.getItem('todos') || "[]";
+let tasks = JSON.parse(noteDataJson);
+// создание обёрток
 function divAdd(div, className, b) {
   let a = document.createElement(div);
   a.className = className;
@@ -38,6 +33,7 @@ function addInputPlaceholder(type, placeholder, clas, idAttr) {
   input.className = clas;
   return input;
 }
+// функция по созданию чекбоксов
 function addInputCheckbox(type, clas, idAttr) {
   let input = document.createElement("input");
   input.type = type;
@@ -45,6 +41,7 @@ function addInputCheckbox(type, clas, idAttr) {
   input.className = clas;
   return input;
 }
+// добавление в контейнер врапера
 function addContainer() {
   let divContainer = divAdd("div", "container");
   let div = document.querySelector(".wrapper_todo");
@@ -66,51 +63,54 @@ function addHeader() {
     addUl(tasks, tasksWrapper);
   });
   // на удаление
-  let deleteBtn = buttonAdd("btn", "Delete All");
-  deleteBtn.addEventListener("click", () => {
+    let deleteBtn = buttonAdd("btn", "Delete All");
+    deleteBtn.addEventListener("click", () => {
     deleteBtn.style.backgroundColor = "rgb(26 26 78 / 70%)";
-    // 1 способ
     let ul = document.querySelector('ul');
     while(ul.firstElementChild){
       ul.firstElementChild.remove();
     }
-    // 2 способ убирает по очереди
-    // addUl(tasks, tasksWrapper.firstElementChild).remove();
+    // возвращение пустого массива после удаления
+    let text = document.querySelector('.text');
+    tasks.push({text, id: crypto.randomUUID()});
+    addUl(tasks = [], tasksWrapper);
   });
   //
   let addInput = addInputPlaceholder("text", "Enter todo …", "input_header");
   divHeader.append(addBtn, addInput, deleteBtn);
   return divHeader;
 }
-
-function addUl (data = [], container) {
+function addUl(data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
+  const noteDataJson = JSON.stringify(data);
+  localStorage.setItem('todos', noteDataJson);
   return container;
 }
-
-
-
 // обработчик на блоках
 function addUlItem(task) {
   let block = divAdd("li", "block");
+  // ===================
   block.onclick = function (event) {
       let target = event.target;
       if(target == input){
-        block.classList.toggle('input_active');
+        block.classList.toggle('block_active');
         text.classList.toggle('text_active');
       }
       if(target == addBtn){
-        block.remove();
+        tasks.splice(block,1);
+        addUl(tasks, tasksWrapper);
       }
     };
-  let input = addInputCheckbox("checkbox", null, "checkbox");
-  let textBlock = divAdd("div", "text_block");
-  let text = divAdd("textarea", "text", task);
-  let wrapBtn = divAdd("div", "wrapper_btn");
-  let addBtn = buttonAdd("btn_1", "X");
-  let addWrapData = divAdd("div", "wrap_data");
+  //============================== 
+  
+    let input = addInputCheckbox("checkbox", null, "checkbox");
+    let textBlock = divAdd("div", "text_block");
+    let text = divAdd("textarea", "text", task);
+    let wrapBtn = divAdd("div", "wrapper_btn");
+    let addBtn = buttonAdd("btn_1", "X");
+    let addWrapData =divAdd("div", "wrap_data");
   let options = {
     // era: "long",
     year: "numeric",
@@ -123,7 +123,7 @@ function addUlItem(task) {
     // second: "numeric"
   };
   let dataBtn = new Date().toLocaleString('ru', options);
-//  
+//  добавление в блоки
   textBlock.append(text);
   addWrapData.append(dataBtn);
   wrapBtn.append(addBtn,addWrapData);
@@ -141,5 +141,3 @@ appBlock.append(addUl(tasks, tasksWrapper));
 const addContainer1 = divAdd("div", "container");
 addContainer1.append(appBlock);
 document.body.append(addContainer1);
-
-
