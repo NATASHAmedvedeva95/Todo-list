@@ -100,12 +100,7 @@ function addUlItem(task) {
   // ===================
   block.onclick = function (event) {
       let target = event.target;
-      if(target == input){
-        block.classList.toggle('block_active');
-        text.classList.toggle('text_active');
-        task.isChecked = !task.isChecked;
-      }
-        if(task.isChecked){
+     if(task.isChecked){
         block.classList.toggle('block_active');
         text.classList.toggle('text_active');
       }
