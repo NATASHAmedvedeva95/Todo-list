@@ -100,9 +100,9 @@ function addUlItem(task) {
   // ===================
   block.onclick = function (event) {
       let target = event.target;
-     if(target == input.isChecked){
-        block.classList.toggle('block_active');
-        text.classList.toggle('text_active');
+     if(target == input){
+        block.classList.add('block_active');
+        text.classList.add('text_active');
       }
       if(target == addBtn){
         tasks.splice(block,1);
