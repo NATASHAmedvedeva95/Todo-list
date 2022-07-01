@@ -1,12 +1,6 @@
 // создание наших тасок.начинаем с пустого массива
 const noteDataJson = localStorage.getItem('todos') || "[]";
 let tasks = JSON.parse(noteDataJson);
-
-window.addEventListener('unload', () => {
- const noteDataJson = JSON.stringify(tasks);
-  localStorage.setItem('todos', noteDataJson);
-});
- 
 // создание обёрток
 function divAdd(div, className, b) {
   let a = document.createElement(div);
@@ -69,7 +63,7 @@ function addHeader() {
     addUl(tasks, tasksWrapper);
   });
   // на удаление
-     let deleteBtn = buttonAdd("btn", "Delete All");
+    let deleteBtn = buttonAdd("btn", "Delete All");
     deleteBtn.addEventListener("click", () => {
     deleteBtn.style.backgroundColor = "rgb(26 26 78 / 70%)";
     let ul = document.querySelector('ul');
@@ -78,7 +72,7 @@ function addHeader() {
     }
     // возвращение пустого массива после удаления
     let text = document.querySelector('.text');
-    tasks.push(text);
+    tasks.push({text, id: crypto.randomUUID()});
     addUl(tasks = [], tasksWrapper);
   });
   //
@@ -86,23 +80,23 @@ function addHeader() {
   divHeader.append(addBtn, addInput, deleteBtn);
   return divHeader;
 }
-//отрисовка ul
 function addUl(data = [], container) {
   let tasks = data.map((task) => addUlItem(task));
   container.innerHTML = "";
   container.append(...tasks);
+  const noteDataJson = JSON.stringify(data);
+  localStorage.setItem('todos', noteDataJson);
   return container;
 }
 // обработчик на блоках
 function addUlItem(task) {
-   let block = divAdd("li", "block");
-  block.id = task.id;
+  let block = divAdd("li", "block");
   // ===================
   block.onclick = function (event) {
       let target = event.target;
-     if(target == input){
-        block.classList.add('block_active');
-        text.classList.add('text_active');
+      if(target == input){
+        block.classList.toggle('block_active');
+        text.classList.toggle('text_active');
       }
       if(target == addBtn){
         tasks.splice(block,1);
@@ -110,10 +104,10 @@ function addUlItem(task) {
       }
     };
   //============================== 
-  
+
     let input = addInputCheckbox("checkbox", null, "checkbox");
     let textBlock = divAdd("div", "text_block");
-    let text = divAdd("textarea", "text", task.text);
+    let text = divAdd("textarea", "text", task);
     let wrapBtn = divAdd("div", "wrapper_btn");
     let addBtn = buttonAdd("btn_1", "X");
     let addWrapData =divAdd("div", "wrap_data");
