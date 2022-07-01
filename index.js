@@ -109,7 +109,7 @@ function addUlItem(task) {
   
     let input = addInputCheckbox("checkbox", null, "checkbox");
      input.addEventListener('click', () => {
-      if(input.isChecked == true){
+      if(task.isChecked == true){
         block.classList.toggle('block_active');
         text.classList.toggle('text_active');
       }
